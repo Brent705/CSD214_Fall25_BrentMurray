@@ -1,6 +1,6 @@
 ```mermaid
 classDiagram
-    class cashTill {
+    class CashTill {
         +sellItem(SaleableItem item)
     }
     
