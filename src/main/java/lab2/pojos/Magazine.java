@@ -1,14 +1,17 @@
 package lab2.pojos;
 
-public class Magazine {
+import java.time.LocalDateTime;
+
+public class Magazine extends Publication implements SaleableItem {
     private int orderQty;
-    private java.time.LocalDateTime currentIssue;
+    private LocalDateTime currentIssue;
 
     public Magazine() {
         super();
     }
 
-    public Magazine(int orderQty, java.time.LocalDateTime currentIssue) {
+    public Magazine(String title, double price, int copies, String isbn, String description, int orderQty, LocalDateTime currentIssue) {
+        super(title, price, copies, isbn, description);
         this.orderQty = orderQty;
         this.currentIssue = currentIssue;
     }
@@ -22,6 +25,18 @@ public class Magazine {
         orderQty = 0;
     }
 
+    @Override
     public void sellItem() {
+        if (orderQty > 0) {
+            orderQty--;
+        }
+    }
+
+    @Override
+    public String toString() {
+      return "Magazine{" +
+              "orderQty=" + orderQty +
+              ", currentIssue=" + currentIssue +
+              '}';
     }
 }

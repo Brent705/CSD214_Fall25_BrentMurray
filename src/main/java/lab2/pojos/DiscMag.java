@@ -3,6 +3,10 @@ package lab2.pojos;
 public class DiscMag extends Magazine {
     private boolean hasDisc;
 
+    public DiscMag(Magazine dm, boolean b) {
+        super();
+    }
+
     @Override
     public void edit() {
         super.edit();

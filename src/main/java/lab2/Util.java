@@ -3,7 +3,7 @@ package lab2;
 import com.github.javafaker.Faker;
 import lab2.pojos.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 
@@ -45,7 +45,7 @@ public class Util {
                 isbn,
                 description,
                 copies,
-                LocalDate.now()
+                LocalDateTime.now()
         );
     }
     public static DiscMag getFakeDiscMag(){

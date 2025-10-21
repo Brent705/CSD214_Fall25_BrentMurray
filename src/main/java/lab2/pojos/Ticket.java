@@ -2,7 +2,7 @@ package lab2.pojos;
 
 import java.io.Serializable;
 
-public abstract class Ticket extends Editable implements Serializable, SaleableItem {
+public class Ticket extends Editable implements Serializable, SaleableItem {
     private int id;
     private String description;
     private double price;
@@ -15,6 +15,10 @@ public abstract class Ticket extends Editable implements Serializable, SaleableI
         this.id = id;
         this.description = description;
         this.price = price;
+    }
+
+    public Ticket(String s, double fakeDoubleBetween) {
+        super();
     }
 
     @Override
