@@ -27,7 +27,6 @@ public class App {
             + "Enter choice: ";
 
     private final ArrayList<SaleableItem> saleableItems = new ArrayList<>();
-    private final int currentItem = 0;
 
     private Scanner input;
     private final PrintStream out;
@@ -75,24 +74,6 @@ public class App {
                     out.println("Invalid choice");
             }
         }
-    }
-
-    public boolean findItemExists(SaleableItem item) {
-        for (SaleableItem sItem : saleableItems) {
-            if (sItem.equals(item)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public SaleableItem findItem(SaleableItem item) {
-        for (SaleableItem sItem : saleableItems) {
-            if (sItem.equals(item)) {
-                return sItem;
-            }
-        }
-        return null;
     }
 
     public void editItem() {
@@ -165,10 +146,6 @@ public class App {
         out.println("***********************");
     }
 
-    public SaleableItem getItem(SaleableItem item) {
-        return findItem(item);
-    }
-
     public void sellItem() {
         if (saleableItems.isEmpty()) {
             out.println("Nothing to sell");
@@ -189,15 +166,6 @@ public class App {
             saleableItems.remove(choice - 1);
         } else {
             out.println("Invalid choice");
-        }
-    }
-
-    public void listI(Object i) {
-        if (i instanceof SaleableItem) {
-            SaleableItem item = (SaleableItem) i;
-            out.println(item + " - Price: " + item.getPrice());
-        } else {
-            out.println(i.toString());
         }
     }
 
