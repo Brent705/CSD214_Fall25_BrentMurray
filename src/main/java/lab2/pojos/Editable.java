@@ -22,4 +22,6 @@ public abstract class Editable {
     public LocalDateTime getInput(LocalDateTime a) {
         return a;
     }
+
+    public abstract void edit();
 }

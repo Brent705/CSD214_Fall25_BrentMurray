@@ -77,7 +77,6 @@ public class App {
         }
     }
 
-
     public boolean findItemExists(SaleableItem item) {
         for (SaleableItem sItem : saleableItems) {
             if (sItem.equals(item)) {
@@ -102,46 +101,21 @@ public class App {
             return;
         }
 
-        out.print(addItemMenu);
-        int choice = input.nextInt();
+        listAny();
+        out.print("Enter item number to edit: ");
+        int itemIndex = input.nextInt();
         input.nextLine();
 
-        switch (choice) {
-            case 1:
-                Book b = new Book();
-                b.initialize();
-                editItem(b);
-                break;
-            case 2:
-                Magazine m = new Magazine();
-                m.initalize();
-                editItem(m);
-                break;
-            case 3:
-                DiscMag dm = new DiscMag();
-                dm.initalize();
-                editItem(dm);
-                break;
-            case 4:
-                Ticket t = new Ticket();
-                t.initalize();
-                editItem(t);
-                break;
-            default:
-                out.println("Invalid choice");
-        }
-    }
-
-    public void editItem(Editable item) {
-        if (item instanceof SaleableItem) {
-            SaleableItem sItem = (SaleableItem) item;
-            SaleableItem found = findItem(sItem);
-            if (found instanceof Editable) {
-                editItem((Editable) found);
+        if (itemIndex > 0 && itemIndex <= saleableItems.size()) {
+            SaleableItem item = saleableItems.get(itemIndex - 1);
+            if (item instanceof Editable) {
+                ((Editable) item).edit();
                 out.println("Item has been edited");
             } else {
-                out.println("Item not found");
+                out.println("Item cannot be edited");
             }
+        } else {
+            out.println("Invalid item number");
         }
     }
 
@@ -151,41 +125,16 @@ public class App {
             return;
         }
 
-        out.print(addItemMenu);
-        int choice = input.nextInt();
+        listAny();
+        out.print("Enter item number to delete: ");
+        int itemIndex = input.nextInt();
         input.nextLine();
 
-        switch (choice) {
-            case 1:
-                Book b = new Book();
-                b.initialize();
-                deleteItem(b);
-                break;
-            case 2:
-                Magazine m = new Magazine();
-                m.initalize();
-                deleteItem(m);
-                break;
-            case 3:
-                DiscMag dm = new DiscMag();
-                dm.initalize();
-                deleteItem(dm);
-                break;
-            case 4:
-                Ticket t = new Ticket();
-                t.initalize();
-                deleteItem(t);
-                break;
-            default:
-                out.println("Invalid choice");
-        }
-    }
-
-    public void deleteItem(SaleableItem s) {
-        if (saleableItems.remove(s)) {
-            out.println("Item has been deleted");
+        if (itemIndex > 0 && itemIndex <= saleableItems.size()) {
+            SaleableItem removed = saleableItems.remove(itemIndex - 1);
+            out.println("Item has been deleted: " + removed);
         } else {
-            out.println("Item not found");
+            out.println("Invalid item number");
         }
     }
 
@@ -211,7 +160,7 @@ public class App {
 
         out.println("\n****** Inventory ******");
         for (int i = 0; i < saleableItems.size(); i++) {
-            out.println((i + 1) + ". " + saleableItems.get(i).toString() + " - Price: " + saleableItems.get(i).getPrice());
+            out.println((i + 1) + ". " + saleableItems.get(i).toString() + " - Price: $" + saleableItems.get(i).getPrice());
         }
         out.println("***********************");
     }
@@ -285,6 +234,6 @@ public class App {
 
     public void addItem(SaleableItem s) {
         saleableItems.add(s);
-        out.print("Item added: " + s.toString());
+        out.println("Item added: " + s.toString());
     }
 }
